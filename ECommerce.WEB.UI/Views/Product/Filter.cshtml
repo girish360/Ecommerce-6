@@ -1,0 +1,45 @@
+﻿
+@{
+    Layout = null;
+}
+@model ECommerce.WEB.UI.Models.ProductFilterVM
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Filter</title>
+</head>
+<body>
+<div>
+    @using (Html.BeginForm("Filter","Product",FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.LabelFor(x=>x.MaxPrice)
+        @Html.TextBoxFor(x=>x.MaxPrice,new{@type="numeric"})
+
+        @Html.LabelFor(x=>x.MinPrice)
+        @Html.TextBoxFor(x=>x.MinPrice,new{@type="numeric"})
+  
+        @Html.LabelFor(x=>x.MaxStock)
+        @Html.TextBoxFor(x=>x.MaxStock, new{@type="numeric"})
+
+        @Html.LabelFor(x=>x.MinStock)
+        @Html.TextBoxFor(x=>x.MinStock, new{@type="numeric"})
+  
+        <input type="submit" name="name" value="Filter"/>
+
+    }
+    @if (ViewBag.Filterable ==true)
+    {
+        <ul>
+            @foreach (var item in ViewBag.FilterProduct)
+            {
+                <li>@item.ProductName</li>
+            }
+        </ul>
+    }
+    
+</div>
+</body>
+</html>

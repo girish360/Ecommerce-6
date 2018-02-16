@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model ECommerce.DAL.Data.Entities.AppUser
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+</head>
+<body>
+    <div>
+        <div>
+            @if (ViewBag.IsSuccess != null && ViewBag.IsSuccess == true)
+            {
+                <label>Başarılı kayıt oldunuz</label>
+            }
+            else if (ViewBag.IsSuccess != null && ViewBag.IsSuccess != false)
+            {
+                <label>Başarısız kayıt </label>
+            }
+        </div>
+
+
+
+        @using (Html.BeginForm("Add", "AppUser", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(false)
+
+            @Html.LabelFor(x => x.UserName)
+            @Html.TextBoxFor(x => x.UserName, new { required = "required" })
+            <br />
+            @Html.LabelFor(x => x.PasswordHash)
+            @Html.TextBoxFor(x => x.PasswordHash, new { @type = "password", required = "required" })
+            <br />
+            @Html.LabelFor(x => x.Email)
+            @Html.TextBoxFor(x => x.Email, new { @type = "email", required = "required" })
+            <br />
+            @Html.LabelFor(x => x.FirstName)
+            @Html.TextBoxFor(x => x.FirstName, new { required = "required" })
+            <br />
+            @Html.LabelFor(x => x.SecondName)
+            @Html.TextBoxFor(x => x.SecondName, new { required = "required" })
+            <br />
+
+
+            <input type="submit" name="name" value="Kayıt ol " />
+
+        }
+
+
+    </div>
+</body>
+</html>

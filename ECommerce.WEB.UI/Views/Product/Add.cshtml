@@ -1,0 +1,55 @@
+﻿
+@{
+    Layout = null;
+}
+
+@model ECommerce.DAL.Data.Entities.Product
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+</head>
+<body>
+<div>
+    
+    <div>
+        @if (ViewBag.IsSuccess!=null && ViewBag.IsSuccess==true)
+        {
+            <label>Başarılı</label>
+
+        }
+        else if (ViewBag.IsSuccess != null &&  ViewBag.IsSuccess == false)
+        {
+            <label>Başarısız</label>
+        }
+    </div>
+    @using (Html.BeginForm("Add", "Product", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false)
+
+        @Html.LabelFor(x => x.ProductName)
+        @Html.TextBoxFor(x => x.ProductName)
+        <br/>
+        @Html.LabelFor(x => x.Stock)
+        @Html.TextBoxFor(x => x.Stock)
+        <br/>
+        @Html.LabelFor(x => x.UnitPrice)
+        @Html.TextBoxFor(x => x.UnitPrice)
+        <br/>
+        <select name="CategoryID">
+            @foreach (var item in ViewBag.Categories)
+            {
+                <option value="@item.ID">@item.CategoryName</option>
+            }
+        </select>
+        <input type="submit" name="name" value="Ürün Ekle"/>
+
+    }
+
+</div>
+</body>
+</html>

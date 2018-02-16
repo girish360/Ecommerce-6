@@ -1,0 +1,55 @@
+﻿
+
+
+
+
+
+@{
+    Layout = null;
+}
+
+@model ECommerce.DAL.Data.Entities.Category
+<!DOCTYPE html>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+</head>
+<body>
+<div>
+    <div>
+        @if (ViewBag.IsSuccess != null && ViewBag.IsSuccess == true)
+        {
+            <label>Başarılı</label>
+        }
+        else if (ViewBag.IsSuccess != null && ViewBag.IsSuccess == false)
+        {
+            <label>Başarısız</label>
+        }
+
+    </div>
+    @using (Html.BeginForm("Add", "Category", FormMethod.Post))
+    {
+         
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false)
+
+        @Html.LabelFor(x => x.CategoryName)
+        @Html.TextBoxFor(x => x.CategoryName)
+        <br/>
+        @Html.LabelFor(x => x.Description)
+        @Html.TextBoxFor(x => x.Description)
+        <br/>
+        @Html.LabelFor(x => x.ImagePath)
+        @Html.TextBoxFor(x => x.ImagePath)
+        <br/>
+        <br/>
+
+        <input type="submit" name="name" value="Ürün Ekle"/>
+
+    }
+</div>
+</body>
+</html>
